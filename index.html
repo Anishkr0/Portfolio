@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en" class="light scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anish Kumar | Frontend Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'warm-cream': '#f4f1ea',
+              'dark-obsidian': '#0d0d0d',
+              'accent-orange': '#e67e22',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      * {
+        transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f4f1ea;
+        color: #121212;
+      }
+      .dark body {
+        background-color: #0d0d0d;
+        color: #f5f5f5;
+      }
+      .font-serif {
+        font-family: 'Playfair Display', serif;
+      }
+      .font-display {
+        font-family: 'Space Grotesk', sans-serif;
+      }
+      @keyframes soft-glow {
+        0%, 100% { opacity: 0.4; transform: scale(1) translate(0, 0); }
+        33% { opacity: 0.6; transform: scale(1.15) translate(30px, -30px); }
+        66% { opacity: 0.5; transform: scale(0.9) translate(-30px, 30px); }
+      }
+      .animate-soft-glow {
+        animation: soft-glow 15s ease-in-out infinite;
+      }
+      .bg-grain {
+        background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+        filter: contrast(140%) brightness(100%);
+      }
+      .dark .bg-grain {
+        filter: contrast(170%) brightness(15%) invert(1);
+      }
+      ::selection {
+        background: #e67e22;
+        color: white;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
