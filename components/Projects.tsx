@@ -55,7 +55,7 @@ const ProjectCard = ({ tag, title, desc, img, isSpecial }: { tag: string, title:
     viewport={{ once: true }}
     className="group cursor-pointer"
   >
-    <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-zinc-100 dark:bg-zinc-900 mb-6">
+<div className="relative aspect-video overflow-hidden rounded-sm">
       <img 
         src={img} 
         alt={title} 
