@@ -1,9 +1,13 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { projectsData } from '../data/projectsData';
 
 const Projects: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="works" className="py-24 px-6 max-w-7xl mx-auto">
       <div className="flex justify-between items-end mb-16">
@@ -18,44 +22,49 @@ const Projects: React.FC = () => {
           </motion.h2>
           <p className="text-gray-500 dark:text-zinc-400 text-lg">SkillSwap Platform & more.</p>
         </div>
-        <a href="#" className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-900 dark:text-zinc-100 hover:text-amber-700 dark:hover:text-amber-500 transition-colors group">
+        <button 
+          onClick={() => navigate('/works')}
+          className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-zinc-900 dark:text-zinc-100 hover:text-amber-700 dark:hover:text-amber-500 transition-colors group"
+        >
           View All Work <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-        </a>
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <ProjectCard 
-          tag="MERN STACK"
-          title="SkillSwap Community"
-          desc="A community skill exchange platform offering dynamic skill filtering, real-time messaging, and secure JWT authentication."
-          img="/assests/skillswap.png"
-        />
-        <ProjectCard 
-          tag="REACT & TAILWIND"
-          title="Developer Portfolio"
-          desc="A modern developer portfolio built with React and Tailwind CSS, featuring smooth animations and responsive design."
-          img="assests/portfolio.png"
-          isSpecial
-        />
-        <ProjectCard 
-          tag="FRONTEND PLATFORM"
-          title="Plantation At Home"
-          desc="Plantation At Home is a modern web platform for discovering and learning about indoor and outdoor plants. Users can browse a dynamic catalog, request air quality tests, and access plant care guides. (No direct selling is enabled on the platform.)"
-          img="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=800"
-        />
+        {projectsData.map((project) => (
+          <ProjectCard
+            key={project.id}
+            tag={project.tag}
+            title={project.title}
+            desc={project.shortDesc}
+            img={project.img}
+            isSpecial={project.isSpecial}
+            onClick={() => navigate(`/project/${project.id}`)}
+          />
+        ))}
       </div>
     </section>
   );
 };
 
-const ProjectCard = ({ tag, title, desc, img, isSpecial }: { tag: string, title: string, desc: string, img: string, isSpecial?: boolean }) => (
+interface ProjectCardProps {
+  tag: string;
+  title: string;
+  desc: string;
+  img: string;
+  isSpecial?: boolean;
+  onClick?: () => void;
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ tag, title, desc, img, isSpecial, onClick }) => (
   <motion.div 
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     className="group cursor-pointer"
+    onClick={onClick}
   >
-<div className="relative aspect-video overflow-hidden rounded-sm">
+    <div className="relative aspect-video overflow-hidden rounded-sm">
       <img 
         src={img} 
         alt={title} 
@@ -64,7 +73,7 @@ const ProjectCard = ({ tag, title, desc, img, isSpecial }: { tag: string, title:
       {isSpecial && (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-16 h-16 bg-white dark:bg-zinc-100 rounded-full flex items-center justify-center shadow-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-             <ArrowUpRight className="text-black" size={24} />
+            <ArrowUpRight className="text-black" size={24} />
           </div>
         </div>
       )}
